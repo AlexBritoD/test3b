@@ -1,0 +1,90 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Test 3B",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/api/products": {
+        "post": {
+          "summary": "Create a new product",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sku": {"type": "string"},
+                    "name": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Product created successfully"
+            }
+          }
+        }
+      },
+      "/api/inventories/product/{product_id}": {
+        "patch": {
+          "summary": "Update product stock",
+          "parameters": [
+            {
+              "name": "product_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "stock": {"type": "integer"}
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Stock updated successfully"
+            }
+          }
+        }
+      },
+      "/api/orders": {
+        "post": {
+          "summary": "Create a new order",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "product_id": {"type": "integer"},
+                    "quantity": {"type": "integer"}
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Order created successfully"
+            }
+          }
+        }
+      }
+    }
+  }
